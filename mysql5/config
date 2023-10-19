@@ -1,5 +1,7 @@
 # env config
 
-export STORAGE_PATH=${STORAGE_PATH:-"/srv/mysql5"}
+export MYSQL_PORT=3306
 
-export ROOT_PASSWORD=${ROOT_PASSWORD:-"passw0rd"}
+export MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-"passw0rd"}
+
+export STORAGE_PATH=${STORAGE_PATH:-"/srv/mysql5"}
