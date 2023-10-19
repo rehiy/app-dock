@@ -1,0 +1,68 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: &name myblog
+  labels:
+    app: *name
+spec:
+  selector:
+    matchLabels:
+      app: *name
+  template:
+    metadata:
+      labels:
+        app: *name
+    spec:
+      containers:
+        - name: typecho
+          image: rehiy/typecho
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+          volumeMounts:
+            - name: *name
+              subPath: usr
+              mountPath: /var/www/default/usr
+      volumes:
+        - name: *name
+          hostPath:
+            path: /srv/myblog
+            type: DirectoryOrCreate
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: &name myblog
+  labels:
+    app: *name
+spec:
+  selector:
+    app: *name
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+    - name: https
+      port: 443
+      targetPort: 443
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: &name myblog
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+spec:
+  rules:
+    - host: blog.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: *name
+                port:
+                  name: http
+  tls:
+    - secretName: default
