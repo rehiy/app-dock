@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: &name mysql8
+  labels:
+    app: *name
+spec:
+  selector:
+    matchLabels:
+      app: *name
+  template:
+    metadata:
+      labels:
+        app: *name
+    spec:
+      containers:
+        - name: mysql8
+          image: mysql:8
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: passw0rd
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: *name
+              subPath: etc
+              mountPath: /etc/mysql/conf.d
+            - name: *name
+              subPath: data
+              mountPath: /var/lib/mysql
+            - name: *name
+              subPath: log
+              mountPath: /var/log/mysql
+      volumes:
+        - name: *name
+          hostPath:
+            path: /srv/mysql8
+            type: DirectoryOrCreate
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: &name mysql8
+  labels:
+    app: *name
+spec:
+  selector:
+    app: *name
+  ports:
+    - name: mysql8
+      port: 3306
+      targetPort: 3306
