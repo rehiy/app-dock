@@ -13,4 +13,4 @@ docker run -d --name mysql5 \
   -v $STORAGE_PATH/etc:/etc/mysql/conf.d \
   -v $STORAGE_PATH/data:/var/lib/mysql \
   -v $STORAGE_PATH/log:/var/log/mysql \
-  mysql:5.7
+  mysql:5
