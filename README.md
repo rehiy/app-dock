@@ -1,5 +1,11 @@
 # Application Dock
 
+## 使用方法
+
+- 将需要安装的应用目录上传到服务器
+- 编辑 `config`，修改环境变量的为你需要的信息
+- 运行 `./docker.sh` 或 `./kubernets.sh` 安装应用
+
 ## 设置亲和性
 
 若K8s集群未启用云原生存储，部署需要持久存储的应用时，可以使用亲和性设置将pod指派给固定的节点，以防止pod迁移。参考文档 [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity)。
