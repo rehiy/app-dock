@@ -1,16 +1,20 @@
 #!/bin/sh
 #
 
+#### 导入变量 ####
+
 . ./config
 
-# 安装环境
+#### 安装依赖 ####
 
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.1/deploy/prerequisite/longhorn-iscsi-installation.yaml
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.1/deploy/prerequisite/longhorn-nfs-installation.yaml
 
+#### 安装应用 ####
+
 kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.5.1/deploy/longhorn.yaml
 
-# 配置面板
+#### 配置面板 ####
 
 export LONGHORN_SECRET=`echo $LONGHORN_USERNAME:$(echo $LONGHORN_PASSWORD | openssl passwd -stdin -apr1) | base64`
 
