@@ -8,6 +8,6 @@
 #### 安装应用 ####
 
 cat kubernetes.yaml \
-    | sed "s#/srv/mysql5#$STORAGE_PATH#g" \
+    | sed "s#/srv/mysql5#$MYSQL_STORAGE#g" \
     | sed "s#passw0rd#$MYSQL_ROOT_PASSWORD#g" \
     | kubectl apply -f -

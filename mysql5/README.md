@@ -6,7 +6,7 @@ MySQL 是一种开源的关系型数据库管理系统（RDBMS），广泛用于
 
 ```shell
 export MYSQL_ROOT_PASSWORD=passw0rd
-export STORAGE_PATH=/srv/mysql5
+export MYSQL_STORAGE=/srv/mysql5
 
 ./kubernetes.sh
 ```

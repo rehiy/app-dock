@@ -5,8 +5,8 @@ Typecho 是一个简洁、易用的开源博客系统，适用于个人博客、
 ## 安装方法
 
 ```shell
-export STORAGE_PATH=/srv/myblog
-export SITE_DOMAIN=blog.example.com
+export TYPECHO_STORAGE=/srv/myblog
+export TYPECHO_DOMAIN=blog.example.com
 
 ./kubernetes.sh
 ```
