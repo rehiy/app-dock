@@ -35,9 +35,9 @@ spec:
 
 ## 应用列表
 
-| 名称                             | 描述                |
-| -------------------------------- | ------------------- |
-| [longhorn](./longhorn/README.md) | 云原生存储          |
-| [mysql5](./mysql5/README.md)     | 关系数据库 MySQL v5 |
-| [mysql8](./mysql8/README.md)     | 关系数据库 MySQL v8 |
-| [typecho](./typecho/README.md)   | PHP 开源博客系统   |
+| 名称                             | 描述                | Docker | Kubernetes |
+| -------------------------------- | ------------------- | ------ | ---------- |
+| [longhorn](./longhorn/README.md) | 云原生存储          | ×      | √          |
+| [mysql5](./mysql5/README.md)     | 关系数据库 MySQL v5 | √      | √          |
+| [mysql8](./mysql8/README.md)     | 关系数据库 MySQL v8 | √      | √          |
+| [typecho](./typecho/README.md)   | PHP 开源博客系统    | √      | √          |
