@@ -1,0 +1,6 @@
+# env config
+
+export LONGHORN_DOMAIN=${LONGHORN_DOMAIN:-"longhorn.example.org"}
+
+export LONGHORN_USERNAME=${LONGHORN_USERNAME:-"admin"}
+export LONGHORN_PASSWORD=${LONGHORN_PASSWORD:-"passw0rd"}
