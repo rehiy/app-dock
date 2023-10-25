@@ -35,9 +35,10 @@ spec:
 
 ## 支持的应用
 
-| 名称                             | 描述                | Docker | Kubernetes | 参考文献                        |
-| -------------------------------- | ------------------- | ------ | ---------- | ------------------------------- |
-| [longhorn](./longhorn/README.md) | 云原生存储          | ×      | √          | https://www.rehiy.com/post/404/ |
-| [mysql5](./mysql5/README.md)     | 关系数据库 MySQL v5 | √      | √          |                                 |
-| [mysql8](./mysql8/README.md)     | 关系数据库 MySQL v8 | √      | √          |                                 |
-| [typecho](./typecho/README.md)   | PHP 开源博客系统    | √      | √          |                                 |
+| 名称                             | 描述                  | Docker | Kubernetes | 备注                            |
+| -------------------------------- | --------------------- | ------ | ---------- | ------------------------------- |
+| [grafpro](./grafpro/README.md)   | Granfana + Prometheus | √      | √          |                                 |
+| [longhorn](./longhorn/README.md) | 云原生存储            | ×      | √          | https://www.rehiy.com/post/404/ |
+| [mysql5](./mysql5/README.md)     | 关系数据库 MySQL v5   | √      | √          |                                 |
+| [mysql8](./mysql8/README.md)     | 关系数据库 MySQL v8   | √      | √          |                                 |
+| [typecho](./typecho/README.md)   | PHP 开源博客系统      | √      | √          |                                 |

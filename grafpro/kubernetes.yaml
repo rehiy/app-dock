@@ -1,0 +1,90 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: &name grafpro
+  labels:
+    app: *name
+spec:
+  selector:
+    matchLabels:
+      app: *name
+  template:
+    metadata:
+      labels:
+        app: *name
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana
+          securityContext:
+            runAsUser: 0
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: *name
+              subPath: grafana
+              mountPath: /var/lib/grafana
+        - name: prometheus
+          image: prom/prometheus
+          ports:
+            - containerPort: 9090
+          volumeMounts:
+            - name: *name
+              subPath: etc
+              mountPath: /etc/prometheus
+            - name: *name
+              subPath: prometheus
+              mountPath: /prometheus
+      volumes:
+        - name: *name
+          hostPath:
+            path: /srv/grafpro
+            type: DirectoryOrCreate
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: &name grafpro
+  labels:
+    app: *name
+spec:
+  selector:
+    app: *name
+  ports:
+    - name: grafana
+      port: 3000
+      targetPort: 3000
+    - name: prometheus
+      port: 9090
+      targetPort: 9090
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: &name grafpro
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+spec:
+  rules:
+    - host: grafana.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: *name
+                port:
+                  name: grafana
+    - host: prometheus.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: *name
+                port:
+                  name: prometheus
+  tls:
+    - secretName: default
